@@ -62,7 +62,7 @@ function validatePerson() {
 
 function validateStudent() {
   let isValid = true;
-  const GRADE_RANGE = "Điểm phải nằm trong phạm vi từ 0 ~ 10";
+  const GRADE_RANGE = "Điểm phải nằm trong phạm vi từ 0 - 10";
 
   // Kiểm tra điểm toán
   let mathScore = getElement("#math").value;
@@ -112,6 +112,10 @@ function validateEmployee() {
   if (!days) {
     isValid = false;
     getElement("#notiDays").innerHTML = "Thông tin không hợp lệ";
+  } else if (days < 0 || days > 31) {
+    isValid = false;
+    getElement("#notiDays").innerHTML =
+      "Số ngày làm việc không được âm hoặc nhiều hơn 31 ngày";
   } else {
     getElement("#notiDays").innerHTML = "";
   }
@@ -125,6 +129,10 @@ function validateEmployee() {
   } else if (!dailySalary.match(/^[0-9]*$/)) {
     isValid = false;
     getElement("#notiBaseSalary").innerHTML = "Chỉ nhập số ở đây";
+  } else if (dailySalary < 1000) {
+    isValid = false;
+    getElement("#notiBaseSalary").innerHTML =
+      "Lương 1 ngày không bé hơn 1000 VNĐ";
   } else {
     getElement("#notiBaseSalary").innerHTML = "";
   }

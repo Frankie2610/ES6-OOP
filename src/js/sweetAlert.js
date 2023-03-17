@@ -1,6 +1,4 @@
-// import { Swal } from "/node_modules/sweetalert2/dist/sweetalert2.min.js";
-
-// Sử dụng thư viện SweetAlert2 để tạo các thông báo alert
+// Thư viện SweetAlert2 để tạo các thông báo alert
 const Toast = Swal.mixin({
   toast: true,
   position: "top-end",
@@ -23,16 +21,3 @@ function alertFail(alert) {
     title: alert,
   });
 }
-
-// // Thông báo xác nhận xóa data
-// function warningDelete() {
-//   return Swal.fire({
-//     title: "Xác nhận Xóa?",
-//     text: "Hành động sẽ không thể hoàn tác!",
-//     icon: "Chú ý",
-//     showCancelButton: true,
-//     confirmButtonText: "Hãy xóa dữ liệu này",
-//   });
-// }
-
-// export { alertFail, alertSuccess, warningDelete };

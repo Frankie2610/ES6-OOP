@@ -1,17 +1,17 @@
 import { ListPerson, Person, Student, Employee, Customer } from "./Person.js";
 import {
+  validateCustomer,
+  validateEmployee,
+  validatePerson,
+  validateStudent,
+} from "./validation.js";
+import {
   getPersonAPI,
   deletePersonAPI,
   createPersonAPI,
   getPersonAPIByID,
   updatePersonAPI,
 } from "./personAPI.js";
-import {
-  validateCustomer,
-  validateEmployee,
-  validatePerson,
-  validateStudent,
-} from "./validation.js";
 
 let personList = []; //Mảng chứa tất cả đối tượng người dùng
 let studentList = []; //Mảng chứa đối tượng Học sinh
@@ -104,92 +104,6 @@ window.createPerson = async function createPerson() {
   }
   $("#personModal").modal("hide"); //Đóng modal sau khi tạo các đối tượng thành công
 };
-
-// getElement("#btnAdd").addEventListener("click", () => {
-//   let userType = getElement("#userTypeForm").value;
-//   let isValidPerson = validatePerson();
-//   let isValidStudent = validateStudent();
-//   let isValidEmployee = validateEmployee();
-//   let isValidCustomer = validateCustomer();
-
-//   const person = {
-//     personalCode: getElement("#personalCode").value,
-//     userType: getElement("#userTypeForm").value,
-//     fullName: getElement("#fullName").value,
-//     email: getElement("#email").value,
-//     address: getElement("#address").value,
-//   };
-//   if (!isValidPerson) {
-//     return;
-//   }
-
-//   if (userType === "Học sinh") {
-//     try {
-//       if (!isValidStudent) {
-//         return;
-//       }
-//       const student = {
-//         ...person,
-//         mathScore: getElement("#math").value,
-//         physicsScore: getElement("#physics").value,
-//         chemistryScore: getElement("#chemistry").value,
-//       };
-//       createPersonAPI(student);
-//       getElement("#choosePersonTable").value = "Học sinh";
-
-//       alertSuccess("Thêm thông tin học sinh thành công");
-//       displayStudentTable();
-//       getStudent(student);
-//     } catch (error) {
-//       alertFail("Thêm thông tin học sinh thất bại");
-//     }
-//   } else if (userType === "Nhân viên") {
-//     try {
-//       if (!isValidEmployee) {
-//         return;
-//       }
-//       const employee = {
-//         ...person,
-//         workingDays: getElement("#days").value,
-//         dailySalary: getElement("#dailySalary").value,
-//       };
-//       createPersonAPI(employee);
-//       getEmployee(employee);
-//       getElement("#choosePersonTable").value = "Nhân viên";
-//       displayEmployeeTable();
-//       alertSuccess("Thêm thông tin nhân viên thành công");
-//     } catch (error) {
-//       alertFail("Thêm thông tin nhân viên thất bại");
-//     }
-//   } else if (userType === "Khách hàng") {
-//     try {
-//       if (!isValidCustomer) {
-//         return;
-//       }
-//       const customer = {
-//         ...person,
-//         company: getElement("#company").value,
-//         invoice: getElement("#invoice").value,
-//         assessment: getElement("#comment").value,
-//       };
-//       createPersonAPI(customer);
-//       getCustomer(customer);
-//       getElement("#choosePersonTable").value = "Khách hàng";
-//       displayCustomerTable();
-//       alertSuccess("Thêm thông tin khách hàng thành công");
-//     } catch (error) {
-//       alertFail("Thêm thông tin khách hàng thất bại");
-//     }
-//   } else {
-//     alertFail("Chưa điền đầy đủ thông tin đối tượng");
-//   }
-//   // getPerson();
-//   // getElement("#choosePersonTable").value = "Đối tượng";
-//   // displayPersonTable();
-//   $("#personModal").modal("hide");
-// });
-
-// selectPerson(personID);
 
 // Hàm hiển thị danh sách toàn bộ đối tượng trung tâm quản lý
 function renderPerson(person) {
@@ -412,7 +326,6 @@ window.updatePerson = function updatePerson(personId) {
         .then((response) => {
           alertSuccess("Cập nhật thông tin học sinh thành công");
           getStudent();
-          // renderPerson(person);
         })
         .catch((error) => {
           alertFail("Cập nhật thông tin học sinh thất bại");
@@ -432,6 +345,7 @@ window.updatePerson = function updatePerson(personId) {
         .then((response) => {
           alertSuccess("Cập nhật thông tin nhân viên thành công");
           getEmployee();
+          // console.log(employeeList);
         })
         .catch((error) => {
           alertFail("Cập nhật thông tin nhân viên thất bại");
@@ -458,6 +372,7 @@ window.updatePerson = function updatePerson(personId) {
         });
     }
   }
+  // console.log(employeeList);
   resetForm();
   $("#personModal").modal("hide");
 };
@@ -553,8 +468,7 @@ async function getCustomer() {
         customer.email,
         customer.company,
         customer.invoice,
-        customer.assessment,
-        customer.id
+        customer.assessment
       );
     });
     renderCustomer(customer);
@@ -571,47 +485,23 @@ window.deletePerson = async function deletePerson(personId) {
     const deletedPerson = await deletePersonAPI(personId);
     let userType = deletedPerson.data.userType; //Ô phân loại của người bị xóa
     if (userTypeDropdown === "Đối tượng") {
-      getPerson();
+      await getPerson();
     } else {
       if (userType === "Học sinh") {
-        getStudent();
+        await getStudent();
       } else if (userType === "Nhân viên") {
-        getEmployee();
+        await getEmployee();
       } else if (userType === "Khách hàng") {
-        getCustomer();
+        await getCustomer();
       }
     }
     alertSuccess("Xóa thông tin người dùng thành công");
   } catch (error) {
     alertFail("Xóa thông tin người dùng thất bại");
   }
+  // console.log(personList);
+  // console.log(customerList);
 };
-
-//Hàm xóa thông tin của đối tượng bất kì khỏi server
-// window.deletePerson = function deletePerson(personId) {
-//   debugger;
-//   let userTypeDropdown = getElement("#choosePersonTable").value; //Người dùng ở ô Dropdown.
-
-//   deletePersonAPI(personId)
-//     .then((response) => {
-//       let userType = response.data.userType; //Người dùng ở ô phân loại
-//       if (userTypeDropdown === "Đối tượng") {
-//         getPerson();
-//       } else {
-//         if (userType === "Học sinh") {
-//           getStudent();
-//         } else if (userType === "Nhân viên") {
-//           getEmployee();
-//         } else if (userType === "Khách hàng") {
-//           getCustomer();
-//         }
-//       }
-//       alertSuccess("Xóa thông tin người dùng thành công");
-//     })
-//     .catch((error) => {
-//       alertFail("Xóa thông tin người dùng thất bại");
-//     });
-// };
 
 // ========DOM===========
 getElement("#choosePersonTable").addEventListener("change", () => {

@@ -11,28 +11,20 @@ function getPersonAPI(user) {
   });
 }
 
-// Lấy thông tin người dùng theo Id
-function getPersonAPIByID(personId) {
-  return axios({
-    method: "GET",
-    url: `${URL}/${personId}`,
-  });
-}
-
-// Xóa thông tin người dùng khỏi server
-function deletePersonAPI(personId) {
-  return axios({
-    method: "DELETE",
-    url: `${URL}/${personId}`,
-  });
-}
-
 // Tạo thông tin người dùng mới lên server
 function createPersonAPI(person) {
   return axios({
     method: "POST",
     url: URL,
     data: person,
+  });
+}
+
+// Lấy thông tin người dùng theo Id
+function getPersonAPIByID(personId) {
+  return axios({
+    method: "GET",
+    url: `${URL}/${personId}`,
   });
 }
 
@@ -44,6 +36,15 @@ function updatePersonAPI(person, personId) {
     data: person,
   });
 }
+
+// Xóa thông tin người dùng khỏi server
+function deletePersonAPI(personId) {
+  return axios({
+    method: "DELETE",
+    url: `${URL}/${personId}`,
+  });
+}
+
 export {
   getPersonAPI,
   deletePersonAPI,

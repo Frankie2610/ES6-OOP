@@ -1,5 +1,3 @@
-//  Tạo class Person, Student, Employ, Customer, ListPerson
-
 class ListPerson {
   constructor(array) {
     this.array = array;

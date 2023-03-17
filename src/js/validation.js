@@ -52,9 +52,9 @@ function validatePerson() {
   let address = getElement("#address").value;
   if (!address) {
     isValid = false;
-    getElement("#notiAddres").innerHTML = "Thông tin không hợp lệ";
+    getElement("#notiAddress").innerHTML = "Thông tin không hợp lệ";
   } else {
-    getElement("#notiAddres").innerHTML = "";
+    getElement("#notiAddress").innerHTML = "";
   }
 
   return isValid;

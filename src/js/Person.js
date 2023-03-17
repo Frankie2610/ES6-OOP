@@ -56,7 +56,7 @@ class Employee extends Person {
     this.dailySalary = Number(dailySalary);
   }
 
-  totalSalary() {
+  totalIncome() {
     let income = this.workingDays * this.dailySalary;
     return income.toLocaleString();
   }

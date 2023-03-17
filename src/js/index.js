@@ -177,7 +177,7 @@ function renderEmployee(employee) {
                   <td class="text-center">${employee.address}</td>
                   <td class="text-center">${employee.email}</td>
                   <td class="text-center">${employee.workingDays}</td>
-                  <td class="text-center">${employee.totalSalary()}</td>
+                  <td class="text-center">${employee.totalIncome()}</td>
                   <td class="text-center">
                       <button class="btn btn-primary my-1" data-toggle="modal" data-target="#personModal" data-id="${
                         employee.id
@@ -632,7 +632,7 @@ window.resetForm = function resetForm() {
   getElement("#notiFullName").innerHTML = "";
   getElement("#notiPersonalCode").innerHTML = "";
   getElement("#notiEmail").innerHTML = "";
-  getElement("#notiAddres").innerHTML = "";
+  getElement("#notiAddress").innerHTML = "";
   getElement("#notiMath").innerHTML = "";
   getElement("#notiPhysics").innerHTML = "";
   getElement("#notiChemistry").innerHTML = "";

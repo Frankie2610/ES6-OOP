@@ -165,7 +165,7 @@ function renderStudent(student) {
 
 //Hàm filter danh sách Nhân viên
 function renderEmployee(employee) {
-  debugger;
+  // debugger;
   let html = employee.reduce((result, employee) => {
     return (
       result +
@@ -403,7 +403,7 @@ async function getPerson(value) {
 
 //Hàm lấy thông tin của đối tượng học sinh
 async function getStudent() {
-  debugger;
+  // debugger;
   try {
     const { data: studentData } = await getPersonAPI("Học sinh");
     studentList = new ListPerson(studentData).array;
@@ -536,7 +536,7 @@ getElement("#userTypeForm").addEventListener("change", () => {
 });
 
 getElement("#btnOpenModal").addEventListener("click", () => {
-  debugger;
+  // debugger;
   getElement("#btnUpdate").style.display = "none";
   getElement("#btnAdd").style.display = "inline-block";
   resetForm();
@@ -575,7 +575,7 @@ function displayStudentTable() {
 
 //Hàm hiển thị bảng thông tin đối tượng Nhân viên
 function displayEmployeeTable() {
-  debugger;
+  // debugger;
   getElement("#thMath").classList.add("d-none");
   getElement("#thPhysics").classList.add("d-none");
   getElement("#thChemistry").classList.add("d-none");
@@ -671,32 +671,6 @@ function displayCustomerForm() {
   getElement(".employee-info").classList.add("d-none");
   getElement(".company-info").classList.remove("d-none");
 }
-// window.searchName = function searchName() {
-// let personArray = [];
-// // window.searchName = function searchName() {
-// getElement("#txtSearch").addEventListener("input", (event) => {
-//   // let search = event.target.value;
-//   // debugger;
-//   // getPerson("Học sinh");
-//   // let index = finInđex;
-//   // getPerson();
-//   console.log(personList);
-//   let newPersonList = personList.array.filter((person) => {
-//     for (let i = 0; i < personList.array.length; i++) {
-//       let name = personList.array[i].fullName;
-//       personArray.push(name);
-//       console.log(personArray);
-//     }
-//     let test = person.personalCode;
-//     console.log(test);
-//     console.log(personList.array);
-//     let search = event.target.value.toLowerCase();
-//     return person.fullName.indexOf(search) !== -1;
-//   });
-//   renderPerson(newPersonList);
-// });
-// };
-// };
 
 // ============ Helpers ==============
 function getElement(selector) {

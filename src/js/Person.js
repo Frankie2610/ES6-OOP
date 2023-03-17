@@ -36,7 +36,7 @@ class Student extends Person {
   averageScore() {
     let averageScore =
       (this.mathScore + this.physicsScore + this.chemistryScore) / 3;
-    return averageScore.toFixed(2);
+    return averageScore.toFixed(1);
   }
 }
 

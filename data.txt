@@ -55,7 +55,7 @@
  },
  {
   "userType": "Học sinh",
-  "personalCode": "0091",
+  "personalCode": "1091",
   "fullName": "Linh",
   "address": "110 Nguyễn Thị Minh Khai, phường 6, Quận 3, tpHCM",
   "email": "linhnguyen2301z@gmail.com",

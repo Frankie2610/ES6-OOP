@@ -1,8 +1,8 @@
 function validatePerson() {
   let isValid = true;
-  // kiểm tra loại người dùng
+  // Kiểm tra loại người dùng
   let userType = getElement("#userTypeForm").value;
-  if (userType === "Đối tượng") {
+  if (userType === "Bạn là ai?") {
     isValid = false;
     getElement("#notiCategoryForm").innerHTML =
       "Vui lòng chọn cho biết bạn là ai";
@@ -10,16 +10,32 @@ function validatePerson() {
     getElement("#notiCategoryForm").innerHTML = "";
   }
 
-  // kiểm tra họ tên
+  // Kiểm tra họ tên
   let fullName = getElement("#fullName").value;
   if (!fullName) {
     isValid = false;
     getElement("#notiFullName").innerHTML = "Thông tin không hợp lệ";
+  } else if (!/\D/.test(fullName)) {
+    isValid = false;
+    getElement("#notiFullName").innerHTML = "Họ tên phải ở định dạng chữ";
   } else {
     getElement("#notiFullName").innerHTML = "";
   }
 
-  // kiểm tra email
+  //Kiểm tra Mã cá nhân
+  let personalCode = getElement("#personalCode").value;
+  if (!personalCode) {
+    isValid = false;
+    getElement("#notiFullName").innerHTML = "Thông tin không hợp lệ";
+  } else if (!/([0-9])\w+/.test(personalCode)) {
+    isValid = false;
+    getElement("#notiPersonalCode").innerHTML =
+      "Mã cá nhân phải ở định dạng số";
+  } else {
+    getElement("#notiPersonalCode").innerHTML = "";
+  }
+
+  // Kiểm tra email
   const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   let email = getElement("#email").value;
   if (!email) {
@@ -48,36 +64,36 @@ function validateStudent() {
   let isValid = true;
   const GRADE_RANGE = "Điểm phải nằm trong phạm vi từ 0 ~ 10";
 
-  // kiểm tra điểm toán
-  let math = getElement("#math").value;
-  if (!math) {
+  // Kiểm tra điểm toán
+  let mathScore = getElement("#math").value;
+  if (!mathScore) {
     isValid = false;
     getElement("#notiMath").innerHTML = "Thông tin không hợp lệ";
-  } else if (Number(math) > 10 || Number(math) < 0) {
+  } else if (Number(mathScore) > 10 || Number(mathScore) < 0) {
     isValid = false;
     getElement("#notiMath").innerHTML = GRADE_RANGE;
   } else {
     getElement("#notiMath").innerHTML = "";
   }
 
-  // kiểm tra điểm lý
-  let physics = getElement("#physics").value;
-  if (!physics) {
+  // Kiểm tra điểm lý
+  let physicsScore = getElement("#physics").value;
+  if (!physicsScore) {
     isValid = false;
     getElement("#notiPhysics").innerHTML = "Thông tin không hợp lệ";
-  } else if (Number(physics) > 10 || Number(physics) < 0) {
+  } else if (Number(physicsScore) > 10 || Number(physicsScore) < 0) {
     isValid = false;
     getElement("#notiPhysics").innerHTML = GRADE_RANGE;
   } else {
     getElement("#notiPhysics").innerHTML = "";
   }
 
-  // kiểm tra điểm hóa
-  let chemistry = getElement("#chemistry").value;
-  if (!chemistry) {
+  // Kiểm tra điểm hóa
+  let chemistryScore = getElement("#chemistry").value;
+  if (!chemistryScore) {
     isValid = false;
     getElement("#notiChemistry").innerHTML = "Thông tin không hợp lệ";
-  } else if (Number(chemistry) > 10 || Number(chemistry) < 0) {
+  } else if (Number(chemistryScore) > 10 || Number(chemistryScore) < 0) {
     isValid = false;
     getElement("#notiChemistry").innerHTML = GRADE_RANGE;
   } else {
@@ -90,7 +106,7 @@ function validateStudent() {
 function validateEmployee() {
   let isValid = true;
 
-  // kiểm tra số ngày làm việc
+  // Kiểm tra số ngày làm việc
   let days = getElement("#days").value;
 
   if (!days) {
@@ -100,13 +116,13 @@ function validateEmployee() {
     getElement("#notiDays").innerHTML = "";
   }
 
-  // kiểm tra lương ngày
-  let baseSalary = getElement("#baseSalary").value;
+  // Kiểm tra lương ngày
+  let dailySalary = getElement("#dailySalary").value;
 
-  if (!baseSalary.trim()) {
+  if (!dailySalary.trim()) {
     isValid = false;
     getElement("#notiBaseSalary").innerHTML = "Thông tin không hợp lệ";
-  } else if (!baseSalary.match(/^[0-9]*$/)) {
+  } else if (!dailySalary.match(/^[0-9]*$/)) {
     isValid = false;
     getElement("#notiBaseSalary").innerHTML = "Chỉ nhập số ở đây";
   } else {
@@ -119,7 +135,7 @@ function validateEmployee() {
 function validateCustomer() {
   let isValid = true;
 
-  // kiểm tra tên công ty
+  // Kiểm tra tên công ty
   let company = getElement("#company").value;
 
   if (!company) {
@@ -129,7 +145,7 @@ function validateCustomer() {
     getElement("#notiCompany").innerHTML = "";
   }
 
-  // kiểm tra trị giá hóa đơn
+  // Kiểm tra trị giá hóa đơn
   let invoice = getElement("#invoice").value;
 
   if (!invoice.trim()) {
@@ -142,7 +158,7 @@ function validateCustomer() {
     getElement("#notiInvoice").innerHTML = "";
   }
 
-  // kiểm tra đánh giá của khách hàng
+  // Kiểm tra đánh giá của khách hàng
   let comment = getElement("#comment").value;
 
   if (!comment) {

@@ -98,7 +98,7 @@
                     <option>Khách hàng</option>
                   </select>
                 </div>
-                <div class="input-group mb-3 ml-4">
+                <div class="input-group mb-3 ml-4" style="display: none">
                   <input
                     id="txtSearch"
                     type="text"
@@ -106,6 +106,7 @@
                     placeholder="Nhập tên"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
+                    onchange="searchName()"
                   />
                   <div class="input-group-append">
                     <span
@@ -284,7 +285,7 @@
                       class="form-control"
                       min="0"
                       max="10"
-                      step="0.1"
+                      step="0.25"
                       placeholder="Điểm Toán"
                     />
                   </div>
@@ -356,7 +357,7 @@
                     </div>
                     <input
                       type="text"
-                      id="baseSalary"
+                      id="dailySalary"
                       class="form-control"
                       placeholder="Lương ngày (VND)"
                     />
@@ -419,7 +420,9 @@
 
           <!-- MODAL FOOTER -->
           <div class="modal-footer d-flex justify-content-center">
-            <button id="btnAdd" class="btn btn-info">Thêm</button>
+            <button id="btnAdd" class="btn btn-info" onclick="createPerson ()">
+              Thêm
+            </button>
             <button
               id="btnUpdate"
               class="btn btn-warning"
@@ -440,7 +443,7 @@
     </div>
 
     <!-- BS4 JS -->
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <!-- <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
@@ -455,7 +458,7 @@
     <!-- <script src="./node_modules/axios/dist/axios.min.js"></script> -->
     <script src="./js/sweetAlert.js"></script>
     <script src="./js/sortFullName.js"></script>
-    <script type="module" src="/js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
     <!-- <script src="/js/main.js"></script> -->
     <!-- <script src="./js/Person.js"></script> -->
     <!-- <script src="./js/personAPI.js"></script> -->

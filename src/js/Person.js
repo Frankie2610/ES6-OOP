@@ -1,14 +1,10 @@
-/* Tạo CLASS Person, Student, Employ, Customer */
+//  Tạo class Person, Student, Employ, Customer, ListPerson
 
-// export { Person, Student, Employee, Customer };
-// class ListPerson {
-//   constructor(studentList, employeeList, customerList) {
-//     this.studentList = studentList;
-//     this.employeeList = employeeList;
-//     this.customerList = customerList;
-//   }
-// }
-// const studentList = new ListPerson([]);
+class ListPerson {
+  constructor(array) {
+    this.array = array;
+  }
+}
 
 class Person {
   constructor(id, userType, personalCode, fullName, address, email) {
@@ -55,15 +51,15 @@ class Employee extends Person {
     address,
     email,
     workingDays,
-    baseSalary
+    dailySalary
   ) {
     super(id, userType, personalCode, fullName, address, email);
     this.workingDays = Number(workingDays);
-    this.baseSalary = Number(baseSalary);
+    this.dailySalary = Number(dailySalary);
   }
 
   totalSalary() {
-    let income = this.workingDays * this.baseSalary;
+    let income = this.workingDays * this.dailySalary;
     return income.toLocaleString();
   }
 }
@@ -87,4 +83,4 @@ class Customer extends Person {
   }
 }
 
-export { Person, Student, Employee, Customer };
+export { ListPerson, Person, Student, Employee, Customer };

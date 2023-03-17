@@ -1,12 +1,12 @@
-import axios from "../node_modules/axios/dist/esm/axios.min.js";
+import axios from "/node_modules/axios/dist/esm/axios.min.js";
 const URL = "https://63f87d376978b1f9105a7dd0.mockapi.io/Person";
 
-function getPersonAPI(value) {
+function getPersonAPI(user) {
   return axios({
     method: "GET",
     url: URL,
     params: {
-      userType: value || undefined,
+      userType: user || undefined,
     },
   });
 }

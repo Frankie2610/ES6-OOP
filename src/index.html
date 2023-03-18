@@ -104,7 +104,7 @@
                     <option>Khách hàng</option>
                   </select>
                 </div>
-                <div class="input-group mb-3 ml-4" style="display: none">
+                <!-- <div class="input-group mb-3 ml-4" style="display: none;">
                   <input
                     id="txtSearch"
                     type="text"
@@ -112,7 +112,6 @@
                     placeholder="Nhập tên"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    onchange="searchName()"
                   />
                   <div class="input-group-append">
                     <span
@@ -122,6 +121,13 @@
                       ><i class="fa fa-search"></i
                     ></span>
                   </div>
+                </div> -->
+                <div class="form-group">
+                  <select id="sortOption" class="btn btn-success ml-2" onchange="sortFullName()">
+                    <option selected>Sắp xếp <i class="fa-solid fa-filter"></i></option>
+                    <option>Từ A-Z</option>
+                    <option>Từ Z-A</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -144,10 +150,10 @@
                   <tr>
                     <th>Mã cá nhân</th>
                     <th>Đối tượng</th>
-                    <th onclick="sortFullName(2)">
+                    <th>
                       Họ tên
                       <span style="cursor: pointer"></span>
-                        <i class="fa-solid fa-filter"></i>
+                        <!-- <i class="fa-solid fa-filter"></i> -->
                       </span>
                     </th>
                     <th>Địa chỉ</th>
@@ -458,7 +464,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/sweetAlert.js"></script>
-    <script src="./js/sortFullName.js"></script>
+    <script type ="module" src="./js/sortFullName.js"></script>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>

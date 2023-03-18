@@ -380,10 +380,7 @@ window.updatePerson = function updatePerson(personId) {
 //Hàm lấy thông tin của đối tượng bất kỳ
 async function getPerson(value) {
   try {
-    const { data: personData } = await getPersonAPI();
-    personList = new ListPerson(personData).array;
-    // console.log(personList);
-    // console.log(personList.array);
+    const { data: personData } = await getPersonAPI(value);
     const person = personData.map((person) => {
       return new Person(
         person.id,
@@ -395,6 +392,7 @@ async function getPerson(value) {
         person.id
       );
     });
+    personList = new ListPerson(person).array;
     renderPerson(person);
   } catch (error) {
     alertFail("Lấy thông tin người dùng thất bại");
@@ -406,7 +404,6 @@ async function getStudent() {
   // debugger;
   try {
     const { data: studentData } = await getPersonAPI("Học sinh");
-    studentList = new ListPerson(studentData).array;
     // console.log(studentList);
     const student = studentData.map((student) => {
       return new Student(
@@ -421,7 +418,7 @@ async function getStudent() {
         student.chemistryScore
       );
     });
-    // console.log(student);
+    studentList = new ListPerson(student).array;
     renderStudent(student);
   } catch (error) {
     alertFail("Lấy thông tin học sinh thất bại");
@@ -432,8 +429,6 @@ async function getStudent() {
 async function getEmployee() {
   try {
     const { data: employeeData } = await getPersonAPI("Nhân viên");
-    employeeList = new ListPerson(employeeData).array;
-    // console.log(employeeList);
     const employee = employeeData.map((employee) => {
       return new Employee(
         employee.id,
@@ -446,6 +441,7 @@ async function getEmployee() {
         employee.dailySalary
       );
     });
+    employeeList = new ListPerson(employee).array;
     renderEmployee(employee);
   } catch (error) {
     alertFail("Lấy thông tin học sinh thất bại");
@@ -456,8 +452,6 @@ async function getEmployee() {
 async function getCustomer() {
   try {
     const { data: customerData } = await getPersonAPI("Khách hàng");
-    customerList = new ListPerson(customerData).array;
-    // console.log(customerList);
     const customer = customerData.map((customer) => {
       return new Customer(
         customer.id,
@@ -471,6 +465,7 @@ async function getCustomer() {
         customer.assessment
       );
     });
+    customerList = new ListPerson(customer).array;
     renderCustomer(customer);
   } catch (error) {
     alertFail("Lấy thông tin khách hàng thất bại");
@@ -482,6 +477,7 @@ window.deletePerson = async function deletePerson(personId) {
   // debugger;
   try {
     let userTypeDropdown = getElement("#choosePersonTable").value; //Người dùng ở ô Dropdown.
+    // console.log(userTypeDropdown);
     const deletedPerson = await deletePersonAPI(personId);
     let userType = deletedPerson.data.userType; //Ô phân loại của người bị xóa
     if (userTypeDropdown === "Đối tượng") {
@@ -505,6 +501,7 @@ window.deletePerson = async function deletePerson(personId) {
 
 // ========DOM===========
 getElement("#choosePersonTable").addEventListener("change", () => {
+  getElement("#sortOption").value = "Sắp xếp";
   resetDisplayTable();
   let userTypeTable = getElement("#choosePersonTable").value;
   if (userTypeTable === "Học sinh") {
@@ -672,7 +669,23 @@ function displayCustomerForm() {
   getElement(".company-info").classList.remove("d-none");
 }
 
+// getElement("#txtSearch").addEventListener("input", (event) => {
+//   const search = event.target.value;
+//   getPerson(search);
+// });
+
 // ============ Helpers ==============
 function getElement(selector) {
   return document.querySelector(selector);
 }
+
+export {
+  personList,
+  studentList,
+  employeeList,
+  customerList,
+  renderPerson,
+  renderStudent,
+  renderEmployee,
+  renderCustomer,
+};

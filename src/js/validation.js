@@ -26,7 +26,7 @@ function validatePerson() {
   let personalCode = getElement("#personalCode").value;
   if (!personalCode) {
     isValid = false;
-    getElement("#notiFullName").innerHTML = "Thông tin không hợp lệ";
+    getElement("#notiPersonalCode").innerHTML = "Thông tin không hợp lệ";
   } else if (!/([0-9])\w+/.test(personalCode)) {
     isValid = false;
     getElement("#notiPersonalCode").innerHTML =

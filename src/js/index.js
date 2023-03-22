@@ -345,7 +345,6 @@ window.updatePerson = function updatePerson(personId) {
         .then((response) => {
           alertSuccess("Cập nhật thông tin nhân viên thành công");
           getEmployee();
-          // console.log(employeeList);
         })
         .catch((error) => {
           alertFail("Cập nhật thông tin nhân viên thất bại");
@@ -372,7 +371,6 @@ window.updatePerson = function updatePerson(personId) {
         });
     }
   }
-  // console.log(employeeList);
   resetForm();
   $("#personModal").modal("hide");
 };
@@ -401,10 +399,8 @@ async function getPerson(value) {
 
 //Hàm lấy thông tin của đối tượng học sinh
 async function getStudent() {
-  // debugger;
   try {
     const { data: studentData } = await getPersonAPI("Học sinh");
-    // console.log(studentList);
     const student = studentData.map((student) => {
       return new Student(
         student.id,
@@ -474,10 +470,8 @@ async function getCustomer() {
 
 //Hàm xóa thông tin của đối tượng bất kì khỏi server
 window.deletePerson = async function deletePerson(personId) {
-  // debugger;
   try {
     let userTypeDropdown = getElement("#choosePersonTable").value; //Người dùng ở ô Dropdown.
-    // console.log(userTypeDropdown);
     const deletedPerson = await deletePersonAPI(personId);
     let userType = deletedPerson.data.userType; //Ô phân loại của người bị xóa
     if (userTypeDropdown === "Đối tượng") {
@@ -495,8 +489,6 @@ window.deletePerson = async function deletePerson(personId) {
   } catch (error) {
     alertFail("Xóa thông tin người dùng thất bại");
   }
-  // console.log(personList);
-  // console.log(customerList);
 };
 
 // ========DOM===========
@@ -668,11 +660,6 @@ function displayCustomerForm() {
   getElement(".employee-info").classList.add("d-none");
   getElement(".company-info").classList.remove("d-none");
 }
-
-// getElement("#txtSearch").addEventListener("input", (event) => {
-//   const search = event.target.value;
-//   getPerson(search);
-// });
 
 // ============ Helpers ==============
 function getElement(selector) {

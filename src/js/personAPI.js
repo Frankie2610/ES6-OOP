@@ -5,8 +5,15 @@ function getPersonAPI(user) {
   return axios({
     method: "GET",
     url: URL,
+    //Thêm vào Đường link URL đoạn sau: "key = ? + Từ khóa muốn tìm kiếm"
+    //Từ khóa hay obj params hỗ trợ cho việc đó, với key = userType, Từ khóa muốn tìm kiếm: user
     params: {
+      //Nếu vế bên tay trái thuộc 1 trong 6 giá trị Falsy value thì sẽ lấy giá trị bên vế phải, ta gán giá trị đó undefined
+      //Nếu giá trị undefined thì chương trình sẽ bỏ qua, ko thực hiện nối chuỗi
+      //Những cặp key-value được khai báo trong obj params sẽ được đưa lên url theo dạng: example.com/products?key1=value1&key2=value2
       userType: user || undefined,
+      // name: name || undefined,
+      // key2: value2
     },
   });
 }

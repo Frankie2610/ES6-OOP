@@ -13,6 +13,7 @@ import {
   updatePersonAPI,
 } from "./personAPI.js";
 
+let arrayList = []; //Mảng chứa tất cả object người dùng
 let personList = []; //Mảng chứa tất cả đối tượng người dùng
 let studentList = []; //Mảng chứa đối tượng Học sinh
 let employeeList = []; //Mảng chứa đối tượng Nhân viên
@@ -165,7 +166,6 @@ function renderStudent(student) {
 
 //Hàm filter danh sách Nhân viên
 function renderEmployee(employee) {
-  // debugger;
   let html = employee.reduce((result, employee) => {
     return (
       result +
@@ -283,7 +283,6 @@ window.selectPerson = async function selectPerson(personId) {
 
 // Hàm cập nhật thông tin user
 window.updatePerson = function updatePerson(personId) {
-  // debugger;
   let userTypeDropdown = getElement("#choosePersonTable").value; //Người dùng ở ô Dropdown.
   let userType = getElement("#userTypeForm").value; //Người dùng ở ô phân loại
   const person = {
@@ -390,6 +389,7 @@ async function getPerson(value) {
         person.id
       );
     });
+    // arrayList = personData;
     personList = new ListPerson(person).array;
     renderPerson(person);
   } catch (error) {
@@ -525,7 +525,6 @@ getElement("#userTypeForm").addEventListener("change", () => {
 });
 
 getElement("#btnOpenModal").addEventListener("click", () => {
-  // debugger;
   getElement("#btnUpdate").style.display = "none";
   getElement("#btnAdd").style.display = "inline-block";
   resetForm();
@@ -564,7 +563,6 @@ function displayStudentTable() {
 
 //Hàm hiển thị bảng thông tin đối tượng Nhân viên
 function displayEmployeeTable() {
-  // debugger;
   getElement("#thMath").classList.add("d-none");
   getElement("#thPhysics").classList.add("d-none");
   getElement("#thChemistry").classList.add("d-none");
@@ -660,6 +658,15 @@ function displayCustomerForm() {
   getElement(".employee-info").classList.add("d-none");
   getElement(".company-info").classList.remove("d-none");
 }
+
+getElement("#txtSearch").addEventListener("input", (event) => {
+  const search = event.target.value.toLowerCase();
+  let newPersonList = personList.filter((person) => {
+    let name = person.fullName.toLowerCase();
+    return name.indexOf(search) !== -1;
+  });
+  renderPerson(newPersonList);
+});
 
 // ============ Helpers ==============
 function getElement(selector) {
